@@ -3,9 +3,28 @@ package com.app;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class HelloWorld {
-    public static void main(String[] argv) {
-        JsonReader jsonReader = new ResourceJsonReader();
-        JsonNode node = jsonReader.read("learn.js");
-        System.out.println(node);
-    }
+
+	public void read2(String resource) {
+		if (resource == null) {
+			throw new NullPointerException("Resource cannot be null");
+		}
+		JsonReader jsonReader = new ResourceJsonReader();
+		JsonNode node = jsonReader.read(resource);
+		System.out.println(node);
+	}
+
+	public void read() {
+		JsonReader jsonReader = new ResourceJsonReader();
+		JsonNode node = jsonReader.read("learn1.js");
+		System.out.println(node);
+	}
+
+	public static void main(String[] argv) {
+		// new HelloWorld().read();
+		try {
+			new HelloWorld().read2(null);
+		} catch (Throwable  ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
 }
